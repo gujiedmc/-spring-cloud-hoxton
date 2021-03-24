@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: order
+  profiles:
+    active: peer1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9100/eureka/
+server:
+  servlet:
+    context-path: /order
+#logging:
+#  level:
+#    root: debug
+---
+server:
+  port: 9301
+spring:
+  profiles: peer1
+
+---
+server:
+  port: 9302
+spring:
+  profiles: peer2
+
+---
+server:
+  port: 9303
+spring:
+  profiles: peer3

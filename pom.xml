@@ -4,12 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.gujiedmc.cloud</groupId>
     <artifactId>spring-cloud-hoxton</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
         <module>eureka-server</module>
+        <module>service-user</module>
+        <module>service-order</module>
+        <module>common-api</module>
     </modules>
 
     <properties>
@@ -20,6 +23,12 @@
         <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
