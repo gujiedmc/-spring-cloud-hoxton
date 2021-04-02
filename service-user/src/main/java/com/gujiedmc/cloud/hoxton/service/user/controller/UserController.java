@@ -1,9 +1,11 @@
 package com.gujiedmc.cloud.hoxton.service.user.controller;
 
+import com.gujiedmc.cloud.hoxton.common.entity.R;
+import com.gujiedmc.cloud.hoxton.common.entity.UserEntity;
+import com.gujiedmc.cloud.hoxton.service.user.dao.UserDao;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * user
@@ -15,9 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
+    @Autowired
+    private UserDao userDao;
+
     @GetMapping("/{id}")
-    public String getById(@PathVariable Long id) {
+    public UserEntity getById(@PathVariable Long id) {
         log.info("查询用户信息：{}", id);
-        return "UserInfo:" + id;
+        return userDao.get(id);
+    }
+
+    @PostMapping("/{id}")
+    public R<?> add(@RequestBody UserEntity userEntity) {
+        userDao.save(userEntity);
+        return R.ok();
     }
 }

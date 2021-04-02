@@ -13,6 +13,8 @@
         <module>service-user</module>
         <module>service-order</module>
         <module>common-api</module>
+        <module>examples</module>
+        <module>common-entity</module>
     </modules>
 
     <properties>
@@ -27,6 +29,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
     </dependencies>
 
