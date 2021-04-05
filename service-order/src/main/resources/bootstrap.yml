@@ -10,9 +10,9 @@ eureka:
 server:
   servlet:
     context-path: /order
-#logging:
-#  level:
-#    root: debug
+logging:
+  level:
+    root: debug
 ---
 server:
   port: 9301
