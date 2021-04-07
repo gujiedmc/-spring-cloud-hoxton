@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author gujiedmc
  * @date 2021-03-24
  */
-@FeignClient(value = "user", path = "user")
+@FeignClient(value = "user")
 public interface UserService {
 
     @GetMapping("/{id}")

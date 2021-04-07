@@ -7,9 +7,22 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9100/eureka/
-server:
-  servlet:
-    context-path: /user
+  instance:
+    metadata-map:
+      cluster: ${spring.application.name}
+      management:
+        # 向注册中心注册监控路径
+        context-path: ${server.servlet.context-path}${management.endpoints.web.base-path:/actuator}
+        health-check-url-path: ${management.endpoints.web.base-path:/actuator}/health
+#server:
+#  servlet:
+#    context-path: /user
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 
 ---
 server:

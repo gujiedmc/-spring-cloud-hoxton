@@ -2,6 +2,7 @@ package com.gujiedmc.cloud.hoxton.service.order.controller;
 
 import com.gujiedmc.cloud.hoxton.common.api.UserService;
 import com.gujiedmc.cloud.hoxton.common.entity.UserEntity;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +31,20 @@ public class OrderController {
     public String getById(@PathVariable Long id) {
         log.info("查询订单信息：{}", id);
         Long userId = 1L;
-        ResponseEntity<String> response = restTemplate.getForEntity("http://user/user/" + userId, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("http://user/" + userId, String.class);
         String userInfo = response.getBody();
         return "OrderInfo:" + id + "," + userInfo;
     }
 
+    @HystrixCommand(fallbackMethod = "feginFallback")
     @GetMapping("/feign/{id}")
     public String getByIdWithFeign(@PathVariable Long id) {
         log.info("查询订单信息：{}", id);
         Long userId = 1L;
         UserEntity userInfo = userService.get(userId);
         return "OrderInfo:" + id + "," + userInfo;
+    }
+    public String feginFallback(Long id) {
+        return "FALLBACK";
     }
 }

@@ -78,7 +78,7 @@ public class CommandPropertiesExample {
 
         @Override
         protected UserEntity run() throws Exception {
-            ErrorCreator.randomThrowError("timeout:" + userId);
+            System.out.println("执行查询：" + userId);
             return UserRemoteService.USER_REMOTE_SERVICE.getUserInfo(userId);
         }
 
@@ -89,6 +89,7 @@ public class CommandPropertiesExample {
          */
         @Override
         protected UserEntity getFallback() {
+            System.out.println("执行Fallback：" + userId);
             return UserRemoteService.USER_REMOTE_SERVICE.getDefaultUserInfo(userId);
         }
     }
