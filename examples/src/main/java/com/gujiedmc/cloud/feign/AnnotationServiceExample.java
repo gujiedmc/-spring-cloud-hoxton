@@ -45,7 +45,7 @@ public class AnnotationServiceExample {
         assert Objects.equals(userEntity, queryResult);
     }
 
-    public interface UserService {
+    private interface UserService {
         @RequestLine("GET /user/{id}")
         UserEntity get(@Param("id") Long id);
 

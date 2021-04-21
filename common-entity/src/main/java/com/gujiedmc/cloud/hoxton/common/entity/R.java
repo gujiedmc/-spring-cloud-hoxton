@@ -21,4 +21,18 @@ public class R<T> {
         r.setMsg("success");
         return r;
     }
+
+    public static R<?> error() {
+        R<?> r = new R<>();
+        r.setCode(-1);
+        r.setMsg("error");
+        return r;
+    }
+
+    public static R<?> error(Throwable throwable) {
+        R<?> r = new R<>();
+        r.setCode(-1);
+        r.setMsg(throwable.getMessage());
+        return r;
+    }
 }

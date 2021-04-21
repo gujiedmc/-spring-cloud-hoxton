@@ -67,7 +67,7 @@ public class FeignRibbonExample {
 
     }
 
-    public interface UserService {
+    private interface UserService {
         @RequestLine("GET /user/{id}")
         UserEntity get(@Param("id") Long id);
 

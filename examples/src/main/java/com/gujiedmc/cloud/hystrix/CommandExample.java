@@ -1,12 +1,9 @@
 package com.gujiedmc.cloud.hystrix;
 
-import com.gujiedmc.cloud.common.ErrorCreator;
 import com.gujiedmc.cloud.hoxton.common.entity.UserEntity;
 import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
 import rx.Observable;
 
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -35,6 +32,10 @@ public class CommandExample {
         Observable<UserEntity> observe = getUserInfoCommand.observe();
         observe.subscribe(System.out::println);
         System.out.println("=================================================================");
+
+        getUserInfoCommand = new GetUserInfoCommand(1L);
+        Observable<UserEntity> userEntityObservable = getUserInfoCommand.toObservable();
+        userEntityObservable.subscribe(System.out::println);
 
     }
 

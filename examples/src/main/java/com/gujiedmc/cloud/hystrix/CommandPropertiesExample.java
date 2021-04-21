@@ -69,7 +69,7 @@ public class CommandPropertiesExample {
                                             .withMaximumSize(10)
                                             // 动态线程最大空闲时长
                                             .withKeepAliveTimeMinutes(1)
-                                            // 队列数量，因为上面的maxQueueSize无法动态修改，因此使用这个
+                                            // 队列限制数量，因为上面的maxQueueSize无法动态修改，因此使用这个动态修改可用队列数量。
                                             .withQueueSizeRejectionThreshold(5)
                             )
             );
