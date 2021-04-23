@@ -16,6 +16,7 @@
         <module>examples</module>
         <module>common-entity</module>
         <module>dashboard</module>
+        <module>zuul-server</module>
     </modules>
 
     <properties>

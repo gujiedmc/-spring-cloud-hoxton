@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: zuul
+  profiles:
+    active: peer1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9100/eureka/
+  instance:
+    metadata-map:
+      cluster: ${spring.application.name}
+      management:
+        # 向注册中心注册监控路径
+        context-path: ${server.servlet.context-path}${management.endpoints.web.base-path:/actuator}
+        health-check-url-path: ${management.endpoints.web.base-path:/actuator}/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# 路由
+zuul:
+  routes:
+    user:
+      serviceId: user
+      path: /user/**
+#      是否删除前缀，默认true
+#      stripPrefix: false
+    order:
+      serviceId: order
+      path: /order/**
+  # 敏感Header，会被过滤
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+logging:
+  level:
+    root: debug
+---
+server:
+  port: 9401
+spring:
+  profiles: peer1
+
+---
+server:
+  port: 9402
+spring:
+  profiles: peer2
+
+---
+server:
+  port: 9403
+spring:
+  profiles: peer3
